@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student - Request Pass</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Student Pass Request</h1>
+    <input type="text" id="studentName" placeholder="Your Name">
+    <input type="text" id="studentId" placeholder="Student ID">
+    <textarea id="reason" placeholder="Reason for leaving"></textarea>
+    <input type="text" id="outTime" placeholder="Expected return time">
+    <button onclick="requestPass()">Request Pass</button>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    function requestPass() {
+      const name = document.getElementById('studentName').value;
+      const id = document.getElementById('studentId').value;
+      const reason = document.getElementById('reason').value;
+      const outTime = document.getElementById('outTime').value;
+
+      if(!name || !id || !reason) {
+        alert("Please fill all required fields");
+        return;
+      }
+
+      fetch("http://localhost:3000/passes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ studentName: name, studentId: id, reason, outTime })
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('message').innerText = "Pass Requested! ID: " + data.id;
+      })
+      .catch(err => console.error(err));
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "passes": 
+  [
+    {
+      "id": 1,
+      "studentName": "Ashmika",
+      "studentId": "24r11a66343",
+      "reason": "Fever",
+      "outTime": "6:00 pm",
+      "status": "pending",
+      "moderatorRemark": "",
+      "createdAt": "2025-10-25T08:39:14.418Z",
+      "updatedAt": "2025-10-25T08:39:14.418Z"
+    },
+    {
+      "id": 2,
+      "studentName": "Ashmika",
+      "studentId": "1",
+      "reason": "Fever",
+      "outTime": "6:00 pm",
+      "status": "pending",
+      "moderatorRemark": "",
+      "createdAt": "2025-10-25T08:42:43.663Z",
+      "updatedAt": "2025-10-25T08:42:43.663Z"
+    },
+    {
+      "id": 3,
+      "studentName": "laya",
+      "studentId": "2",
+      "reason": "cold",
+      "outTime": "6:00 pm",
+      "status": "pending",
+      "moderatorRemark": "",
+      "createdAt": "2025-10-25T08:43:04.608Z",
+      "updatedAt": "2025-10-25T08:43:04.608Z"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Moderator - Approve/Reject Pass</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Moderator Panel</h1>
+    <div id="passesList">
+      <!-- Passes will appear here -->
+    </div>
+  </div>
+
+  <script>
+    // Fetch all passes from backend
+    function loadPasses() {
+      fetch("http://localhost:3000/passes")
+        .then(res => res.json())
+        .then(data => {
+          const container = document.getElementById("passesList");
+          container.innerHTML = "";
+          if(data.length === 0) {
+            container.innerHTML = "<p>No passes available.</p>";
+            return;
+          }
+
+          data.forEach(pass => {
+            const passDiv = document.createElement("div");
+            passDiv.style.border = "1px solid #ccc";
+            passDiv.style.padding = "10px";
+            passDiv.style.margin = "10px 0";
+            passDiv.style.borderRadius = "8px";
+            passDiv.innerHTML = `
+              <p><strong>ID:</strong> ${pass.id}</p>
+              <p><strong>Name:</strong> ${pass.studentName}</p>
+              <p><strong>Reason:</strong> ${pass.reason}</p>
+              <p><strong>Out Time:</strong> ${pass.outTime}</p>
+              <input type="text" placeholder="Add remark" id="remark-${pass.id}">
+              <button onclick="approve(${pass.id})">Approve</button>
+              <button onclick="reject(${pass.id})">Reject</button>
+            `;
+            container.appendChild(passDiv);
+          });
+        });
+    }
+
+    function approve(id) {
+      const remark = document.getElementById(remark-${id}).value;
+      fetch(http://localhost:3000/passes/${id}, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: "approved", remark })
+      })
+      .then(() => loadPasses());
+    }
+
+    function reject(id) {
+      const remark = document.getElementById(remark-${id}).value;
+      fetch(http://localhost:3000/passes/${id}, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: "rejected", remark })
+      })
+      .then(() => loadPasses());
+    }
+
+    // Load passes on page load
+    window.onload = loadPasses;
+  </script>
+</body>
+</html>
